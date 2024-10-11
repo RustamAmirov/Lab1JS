@@ -8,6 +8,16 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams(stringA, stringB) {}
+function anagrams(stringA, stringB) {
+    let string1 =stringA.toLowerCase().split("").sort().join("");
+    let string2 =stringB.toLowerCase().split("").sort().join("");
+    let isTrue = false;
+    console.log(string2);
+    console.log(string1);
+    if (string1==string2) {
+        isTrue=true;
+    }
+    return isTrue     
+}
 
 module.exports = anagrams;

@@ -9,9 +9,48 @@
 // 3) Implement 'traverseBF' and 'traverseDF'
 // on the tree class.  Each method should accept a
 // function that gets called with each element in the tree
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.children = [];
+    }
 
-class Node {}
+    add(childData) {
+        const childNode = new Node(childData);
+        this.children.push(childNode);
+    }
 
-class Tree {}
+    remove(childData) {
+        this.children = this.children.filter(c => c.data !== childData);
+    }
+}
+
+class Tree {
+    constructor() {
+        this.root = null;
+    }
+
+    traverseBF(callback) {
+        const queue = [];
+        queue.push(this.root);
+
+        while (queue.length) {
+            const node = queue.shift();
+            if (node) {
+                callback(node);
+                node.children.forEach(child => queue.push(child));
+            }
+        }
+    }
+
+    traverseDF(callback) {
+        const traverse = (node) => {
+            if (!node) return;
+            callback(node);
+            node.children.forEach(child => traverse(child));
+        };
+        traverse(this.root);
+    }
+}
 
 module.exports = { Tree, Node };

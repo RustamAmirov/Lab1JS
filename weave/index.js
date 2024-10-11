@@ -23,7 +23,23 @@
 //    q.remove() // 'There'
 
 const Queue = require('./queue');
+function weave(sourceOne, sourceTwo) {
+    let que3 = new Queue();
+    while (true) {
+        if (sourceOne.peek() == undefined && sourceTwo.peek() == undefined) {
+            return que3;
+        }
 
-function weave(sourceOne, sourceTwo) {}
+        if (sourceOne.peek() == undefined && sourceTwo.peek() != undefined) {
+            que3.add(sourceTwo.remove());
+        } else if (sourceTwo.peek() == undefined && sourceOne.peek() != undefined) {
+            que3.add(sourceOne.remove());
+        } else {
+            que3.add(sourceOne.remove());
+            que3.add(sourceTwo.remove());
+        }
+    }
+}
 
 module.exports = weave;
+
